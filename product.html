@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | MERO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">MERO</a>
+            <nav class="nav" id="mobile-nav">
+                <ul class="nav-list">
+                    <li><a href="catalog.html" class="nav-link">Catalog</a></li>
+                    <li><a href="cart.html" class="nav-link">Cart </a></li>
+                </ul>
+            </nav>
+            <button class="burger" id="burger-btn"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="product-container"></div>
+    </main>
+
+    <script>
+        async function loadProduct() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const container = document.getElementById('product-container');
+
+            try {
+                const resp = await fetch('data.json');
+                const data = await resp.json();
+                const product = data.find(p => p.id == id);
+
+                if (product) {
+                    container.innerHTML = `
+                        <div class="product-page">
+                            <div class="product-gallery"><img src="${product.image}" style="width: 100%;"></div>
+                            <div class="product-details">
+                                <h1 class="hero-title" style="font-size: 42px;">${product.title}</h1>
+                                <p style="font-size: 24px; margin: 20px 0; font-weight: 600;">${product.price} UAH</p>
+                                <p style="color: #666; margin-bottom: 30px;">${product.description}</p>
+                                <div class="size-selector">
+                                    <p style="width:100%; font-size:12px; text-transform:uppercase;">Select Size</p>
+                                    ${product.sizes.map(s => `<button class="size-btn">${s}</button>`).join('')}
+                                </div>
+                                <button class="btn-black" id="add-to-cart" style="width: 100%; margin-top: 30px;">ADD TO CART</button>
+                            </div>
+                        </div>
+                    `;
+
+                    document.querySelectorAll('.size-btn').forEach(btn => {
+                        btn.onclick = () => {
+                            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                            btn.classList.add('active');
+                        };
+                    });
+
+                    document.getElementById('add-to-cart').onclick = () => {
+                        const size = document.querySelector('.size-btn.active');
+                        if (!size) return alert('Please select size!');
+
+                        localStorage.setItem('cartItem', JSON.stringify({
+                            ...product, size: size.innerText
+                        }));
+                        window.location.href = 'cart.html';
+                    };
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        const burgerBtn = document.getElementById('burger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        burgerBtn.onclick = () => {
+            burgerBtn.classList.toggle('active');
+            mobileNav.classList.toggle('is-open');
+            document.body.classList.toggle('no-scroll');
+        };
+
+        loadProduct();
+    </script>
+</body>
+</html>

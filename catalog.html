@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog | MERO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">MERO</a>
+            <nav class="nav" id="mobile-nav">
+                <ul class="nav-list">
+                    <li><a href="catalog.html" class="nav-link">Catalog</a></li>
+                    <li><a href="cart.html" class="nav-link">Cart </a></li>
+                </ul>
+            </nav>
+            <button class="burger" id="burger-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="loader" style="text-align: center; padding: 50px;">LOADING...</div>
+        <div id="items-grid" class="grid-layout"></div>
+    </main>
+
+    <script>
+        async function loadCatalog() {
+            const grid = document.querySelector('#items-grid');
+            const loader = document.querySelector('#loader');
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error('Помилка завантаження');
+                const data = await response.json();
+
+                grid.innerHTML = data.map(item => `
+                    <div style="position: relative;">
+                        <button class="like-btn">❤</button>
+                        <a href="product.html?id=${item.id}" class="card">
+                            <div class="card-img-wrapper">
+                                <img src="${item.image}" alt="${item.title}">
+                            </div>
+                            <div class="card-info">
+                                <h3 class="card-title">${item.title}</h3>
+                                <p class="card-price">${item.price} UAH</p>
+                            </div>
+                        </a>
+                    </div>
+                `).join('');
+
+                grid.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('like-btn')) {
+                        e.preventDefault();
+                        e.target.classList.toggle('is-active');
+                    }
+                });
+            } catch (e) {
+                grid.innerHTML = '<p>Error loading items.</p>';
+            } finally {
+                loader.style.display = 'none';
+            }
+        }
+
+        const burgerBtn = document.getElementById('burger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        burgerBtn.onclick = () => {
+            burgerBtn.classList.toggle('active');
+            mobileNav.classList.toggle('is-open');
+            document.body.classList.toggle('no-scroll');
+        };
+
+        loadCatalog();
+    </script>
+</body>
+</html>

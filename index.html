@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERO | Official Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">MERO</a>
+            <nav class="nav" id="mobile-nav">
+                <ul class="nav-list">
+                    <li><a href="catalog.html" class="nav-link">Catalog</a></li>
+                    <li><a href="cart.html" class="nav-link">Cart </a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+            <button class="burger" id="burger-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000" alt="Autumn Collection">
+            </div>
+            <div class="hero-content">
+                <span class="subtitle">Personalized Selection</span>
+                <h1 class="hero-title">New Autumn Collection 2026</h1>
+                <a href="catalog.html" class="btn-black">GO TO CATALOG</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-logo">MERO</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Shipping</a>
+            </div>
+            <div class="footer-copy">© 2026 MERO. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        const burgerBtn = document.getElementById('burger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        burgerBtn.onclick = () => {
+            burgerBtn.classList.toggle('active');
+            mobileNav.classList.toggle('is-open');
+            document.body.classList.toggle('no-scroll');
+        };
+    </script>
+</body>
+</html>

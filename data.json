@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "Худі 'Overline' Black",
+    "category": "hoodies",
+    "price": 1200,
+    "sizes": ["S", "M", "L", "XL"],
+    "description": "Комфортне худі вільного крою з якісної трьохнитки. Ідеально для повсякденного носіння.",
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=400",
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "title": "Футболка Basic White",
+    "category": "t-shirts",
+    "price": 450,
+    "sizes": ["M", "L", "XXL"],
+    "description": "Базова біла футболка з 100% бавовни. Щільна тканина, що тримає форму.",
+    "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=400",
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "title": "Джинси Loose Fit",
+    "category": "pants",
+    "price": 1800,
+    "sizes": ["30", "32", "34", "36"],
+    "description": "Широкі джинси у стилі ретро. Високоякісний денім, що не втрачає колір.",
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=400",
+    "inStock": false
+  },
+  {
+    "id": 4,
+    "title": "Куртка Urban Bomber",
+    "category": "outerwear",
+    "price": 2500,
+    "sizes": ["S", "M", "L"],
+    "description": "Стильний бомбер для міських умов. Захищає від вітру та легкого дощу.",
+    "image": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=400",
+    "inStock": true
+  },
+  {
+    "id": 5,
+    "title": "Світшот 'Street Spirit'",
+    "category": "hoodies",
+    "price": 1100,
+    "sizes": ["S", "M", "L", "XL"],
+    "description": "Теплий світшот з унікальним принтом на спині. М'який начіс всередині.",
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=400",
+    "inStock": true
+  },
+  {
+    "id": 6,
+    "title": "Кепка Minimalist",
+    "category": "accessories",
+    "price": 350,
+    "sizes": ["One Size"],
+    "description": "Класична кепка з регульованою застібкою. Мінімалістичний дизайн.",
+    "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=400",
+    "inStock": true
+  }
+]

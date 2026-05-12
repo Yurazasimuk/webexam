@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | MERO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">MERO</a>
+            <nav><ul class="nav-list"><li><a href="catalog.html" class="nav-link">Catalog</a></li></ul></nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 style="margin: 40px 0; font-family: var(--font-serif);">Your Order</h1>
+        <div class="product-page">
+            <div id="cart-content" style="flex: 1;"></div>
+            <div style="flex: 1; background: var(--gray); padding: 40px;">
+                <form id="order-form">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="John Doe">
+                    <div style="margin: 20px 0;">
+                        <label>Phone</label>
+                        <input type="tel" id="user-tel"
+       name="tel"
+       placeholder="+380XXXXXXXXX"
+       pattern="^\+380[0-9]{9}$"
+       title="Номер має починатися з +380 і містити ще 9 цифр"
+       required>
+                    </div>
+                    <button type="submit" class="btn-black" style="width: 100%;">CONFIRM ORDER</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const item = JSON.parse(localStorage.getItem('cartItem'));
+        if (item) {
+            document.getElementById('cart-content').innerHTML = `
+                <div style="display: flex; gap: 30px; border-bottom: 1px solid #ddd; padding-bottom: 30px;">
+                    <img src="${item.image}" style="width: 150px; aspect-ratio: 3/4; object-fit: cover;">
+                    <div>
+                        <h2 style="font-family: var(--font-serif);">${item.title}</h2>
+                        <p style="margin: 10px 0;">Size: <b>${item.size}</b></p>
+                        <p style="font-size: 20px;"><b>${item.price} UAH</b></p>
+                    </div>
+                </div>
+            `;
+        } else {
+            document.getElementById('cart-content').innerHTML = "<h3>Your cart is empty</h3>";
+        }
+
+        document.getElementById('order-form').onsubmit = (e) => {
+            e.preventDefault();
+            alert('Order placed! We will call you soon.');
+            localStorage.clear();
+            window.location.href = 'index.html';
+        };
+    </script>
+</body>
+</html>
